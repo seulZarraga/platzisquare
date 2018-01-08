@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+       <a class="btn btn-primary" routerLink="/crear/new">Crear nuevo negocio</a>
+      <hr>
+      <h2>Lugares Cercanos</h2>
+      <ul class="list-group">
+        <ng-container *ngFor="let lugar of lugares">
+            <li class="list-group-item"> 
+              <a routerLink="/crear/{{lugar.id}}"><h3>{{ lugar.nombre | uppercase}}</h3></a>
+              <br>
+              <small>Creado: {{ lugar.id | date: 'short'}} </small>
+              <p [innerHtml]="lugar.descripcion  "></p>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="col-md-4"> 
+      <h2>Destacados</h2>
+    </div>
+  </div>
+</div>
+<hr>
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker *ngFor="let lugar of lugares"  [latitude]="lugar.lat" [longitude]="lugar.lng"></agm-marker>
+</agm-map>
